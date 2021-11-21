@@ -20,11 +20,11 @@ import mainapp.views as mainapp  # Здесь импортируем наш ко
 
 
 urlpatterns = [
-    path('', mainapp.index),  # Назначаем домашней странице обработчик index из views
-    path('admin/', admin.site.urls),
-    path('cart/', mainapp.cart),
-    path('checkout/', mainapp.checkout),
-    path('product-details/', mainapp.product_details),
-    path('shop/', mainapp.shop),
-    path('test_page/', mainapp.test_page),
+    path('', mainapp.index, name='index'),  # Назначаем домашней странице обработчик index из views
+    path('admin/', admin.site.urls, name='admin'),
+    path('cart/', mainapp.cart, name='cart'),
+    path('checkout/', mainapp.checkout, name='checkout'),
+    path('product-details/', mainapp.product_details, name='product_details'),
+    path('shop/', mainapp.shop, name='shop'),
+    path('test_page/', mainapp.test_page, name='test_page'),
 ]
