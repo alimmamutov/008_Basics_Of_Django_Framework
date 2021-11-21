@@ -21,3 +21,8 @@ def checkout(request):
 
 def product_details(request):
     return render(request, 'mainapp/product-details.html')  #Второй параметр - это путь html страницы, относительно templates
+
+
+def test_page(request):
+    return render(request, 'mainapp/test_page.html')
+

@@ -26,4 +26,5 @@ urlpatterns = [
     path('checkout/', mainapp.checkout),
     path('product-details/', mainapp.product_details),
     path('shop/', mainapp.shop),
+    path('test_page/', mainapp.test_page),
 ]
