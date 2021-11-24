@@ -1,10 +1,10 @@
 {% load static %}
 <div class="products-catagories-area clearfix">
     <div class="amado-pro-catagory clearfix">
-        {% for item in products_list %}
+        {% for item in product_list %}
         <div class="single-products-catagory clearfix">
             <a href="{% url 'main:shop' %}">
-                <img src="{{ item.img }}" alt="">
+                <img src="/media/{{ item.image }}" alt="">
                 <!-- Hover Content -->
                 <div class="hover-content">
                     <div class="line"></div>

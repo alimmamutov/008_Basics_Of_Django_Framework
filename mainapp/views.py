@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product, ProductCategory  # импортирую модели для формирования списка товаров
 
 # Create your views here.
 links_menu = [{'href': 'main:index', 'name': 'Home'},
@@ -11,21 +12,25 @@ links_menu = [{'href': 'main:index', 'name': 'Home'},
 
 
 def index(request):
+
+    # Закомментировал т.к. получать список продуктов буду из модели
     products_list = [
-        {'price': '150', 'img': '/static/img/bg-img/1.jpg', 'name': 'Modern Chair'},
-        {'price': '250', 'img': '/static/img/bg-img/2.jpg', 'name': 'Minimalistic Plant Pot'},
-        {'price': '300', 'img': '/static/img/bg-img/3.jpg', 'name': 'Modern Chair'},
-        {'price': '350', 'img': '/static/img/bg-img/4.jpg', 'name': 'Night Stand'},
-        {'price': '400', 'img': '/static/img/bg-img/5.jpg', 'name': 'Plant Pot'},
-        {'price': '450', 'img': '/static/img/bg-img/6.jpg', 'name': 'Small Table'},
-        {'price': '500', 'img': '/static/img/bg-img/7.jpg', 'name': 'Metallic Chair'},
-        {'price': '550', 'img': '/static/img/bg-img/8.jpg', 'name': 'Modern Rocking Chair'},
-        {'price': '600', 'img': '/static/img/bg-img/9.jpg', 'name': 'Home Deco'}
-    ]
+            {'price': '150', 'img': '/static/img/bg-img/1.jpg', 'name': 'Modern Chair'},
+            {'price': '250', 'img': '/static/img/bg-img/2.jpg', 'name': 'Minimalistic Plant Pot'},
+            {'price': '300', 'img': '/static/img/bg-img/3.jpg', 'name': 'Modern Chair'},
+            {'price': '350', 'img': '/static/img/bg-img/4.jpg', 'name': 'Night Stand'},
+            {'price': '400', 'img': '/static/img/bg-img/5.jpg', 'name': 'Plant Pot'},
+            {'price': '450', 'img': '/static/img/bg-img/6.jpg', 'name': 'Small Table'},
+            {'price': '500', 'img': '/static/img/bg-img/7.jpg', 'name': 'Metallic Chair'},
+            {'price': '550', 'img': '/static/img/bg-img/8.jpg', 'name': 'Modern Rocking Chair'},
+            {'price': '600', 'img': '/static/img/bg-img/9.jpg', 'name': 'Home Deco'}
+        ]
+
     content = {
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
-        'products_list': products_list
+        # 'products_list': products_list  # // до навыка работы с моделями получал из константного списка
+        'product_list' : Product.objects.all()[:9]  # Получаем первые 9 продуктов из  модели
     }
     return render(request, 'mainapp/index.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
