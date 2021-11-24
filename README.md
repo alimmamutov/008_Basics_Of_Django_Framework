@@ -1,4 +1,17 @@
 # Мамутов Алим - Интернет магазин мебели
+***
+****Служебное****
+***
+*Для установки нужного venv:*
+    
+    pip install -r requirements.txt     
+(requirements.txt лежит в корне проекта)
+
+*Для выгрузки venv:*
+
+    pip freeze > requirements.txt
+***
+***
 
 **Урок 02**
 
