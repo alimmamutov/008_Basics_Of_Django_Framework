@@ -126,3 +126,6 @@ STATIC_URL = '/static/'  # Здесь по умолчанию указывает
 STATICFILES_DIRS = (  # Здесь указывается физическая папка
     'static',
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Определил Адрес для media. далее сетевой адрес назначил в urls

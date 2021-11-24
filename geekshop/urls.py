@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings  # импортируем для настроек media
+from django.conf.urls.static import static  # импортируем для настроек media
 
 urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),  # Здесь добавляю urls из mainapp
     path('admin/', admin.site.urls, name='admin'),
 ]
+
+# Сообщаю Django, что папка на диске MEDIA_ROOT доступна по сетевому адресу MEDIA_ROOT
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
