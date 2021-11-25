@@ -1,0 +1,11 @@
+<ul>
+    {% for item in category_list %}
+    <li class='
+        {% if item.id == 1 %}
+            active
+        {% endif %}'> <!--  не смог дать ума присваиванию текущей категории класса актив. Поставил по дефолту для ид 1-->
+    <a href="#">{{ item.name }}</a></li>
+    {% endfor %}
+
+
+</ul>
