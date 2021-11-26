@@ -4,7 +4,7 @@ from .models import Product, ProductCategory  # импортирую модел�
 # Create your views here.
 links_menu = [{'href': 'main:index', 'name': 'Home'},
               {'href': 'main:shop', 'name': 'Shop'},
-              {'href': 'main:product_details', 'name': 'Product'},
+              # {'href': 'main:product_details', 'name': 'Product'},
               {'href': 'main:cart', 'name': 'Cart'},
               {'href': 'main:checkout', 'name': 'Checkout'},
               {'href': 'main:test_page', 'name': 'Test page'}
@@ -67,10 +67,11 @@ def checkout(request, pk=None):
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
 
 
-def product_details(request):
+def product_details(request, product_id=None):
     content = {
         'title': 'Amado - Furniture Ecommerce | Product details',
-        'links_menu': links_menu
+        'links_menu': links_menu,
+        'product_id': product_id
     }
     return render(request, 'mainapp/product-details.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates

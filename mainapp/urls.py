@@ -9,7 +9,7 @@ urlpatterns = [
     path('', mainapp.index, name='index'),  # Назначаем домашней странице обработчик index из views
     path('cart/', mainapp.cart, name='cart'),
     path('checkout/', mainapp.checkout, name='checkout'),
-    path('product-details/', mainapp.product_details, name='product_details'),
+    path('product-details/<int:product_id>', mainapp.product_details, name='product_details'),
     path('shop/', mainapp.shop, name='shop'),
     path('test_page/', mainapp.test_page, name='test_page'),
 ]

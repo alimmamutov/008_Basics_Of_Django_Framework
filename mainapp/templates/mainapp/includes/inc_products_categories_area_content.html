@@ -3,7 +3,7 @@
     <div class="amado-pro-catagory clearfix">
         {% for item in product_list %}
         <div class="single-products-catagory clearfix">
-            <a href="{% url 'main:shop' %}">
+            <a href="{% url 'main:product_details' item.pk %}">
                 <img src="/media/{{ item.image }}" alt="">
                 <!-- Hover Content -->
                 <div class="hover-content">
