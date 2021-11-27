@@ -30,7 +30,7 @@ def index(request):
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
         # 'products_list': products_list  # // до навыка работы с моделями получал из константного списка
-        'product_list': Product.objects.all()[:9]  # Получаем первые 9 продуктов из  модели
+        'product_list': Product.objects.all()[:]  # Получаем первые 9 продуктов из  модели
     }
     return render(request, 'mainapp/index.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
