@@ -14,17 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-import mainapp.views as mainapp  # Здесь импортируем наш контроллер из views
-
+from django.urls import path, include
+from django.conf import settings  # импортируем для настроек media
+from django.conf.urls.static import static  # импортируем для настроек media
 
 urlpatterns = [
-    path('', mainapp.index, name='index'),  # Назначаем домашней странице обработчик index из views
+    path('', include('mainapp.urls', namespace='main')),  # Здесь добавляю urls из mainapp
     path('admin/', admin.site.urls, name='admin'),
-    path('cart/', mainapp.cart, name='cart'),
-    path('checkout/', mainapp.checkout, name='checkout'),
-    path('product-details/', mainapp.product_details, name='product_details'),
-    path('shop/', mainapp.shop, name='shop'),
-    path('test_page/', mainapp.test_page, name='test_page'),
 ]
+
+# Сообщаю Django, что папка на диске MEDIA_ROOT доступна по сетевому адресу MEDIA_ROOT
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

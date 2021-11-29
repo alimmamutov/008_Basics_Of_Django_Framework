@@ -1,0 +1,11 @@
+<ul>
+    {% for item in category_list %}
+    <li class='
+        {% if request.resolver_match.kwargs.category_id == item.pk %}
+            active
+        {% endif %}'>
+    <a href="{% url 'main:shop' item.pk %}">{{ item.name }}</a></li>
+    {% endfor %}
+
+
+</ul>

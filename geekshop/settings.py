@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'mainapp',
     'mainapp.apps.MainappConfig',
+    'import_export', #  Приложение для загрузки/выгрузки данных в бд через админку
 ]  # Установленные приложения
 
 MIDDLEWARE = [
@@ -107,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -126,3 +127,7 @@ STATIC_URL = '/static/'  # Здесь по умолчанию указывает
 STATICFILES_DIRS = (  # Здесь указывается физическая папка
     'static',
 )
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Определил Адрес для media. далее сетевой адрес назначил в urls
