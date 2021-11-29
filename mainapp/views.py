@@ -16,7 +16,8 @@ def index(request):
     content = {
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
-        'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random())
+        'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
+        'page': request.GET["page"]
     }
     return render(request, 'mainapp/index.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates

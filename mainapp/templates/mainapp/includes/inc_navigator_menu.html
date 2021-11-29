@@ -7,6 +7,8 @@
                             {% endif %}">
                             {% if link.href == 'main:shop' %}
                             <a href="{% url link.href 1 %}"> {{link.name}}</a>
+                            {% elif link.href == 'main:index' %}
+                            <a href="{% url link.href %}?page=1"> {{link.name}}</a>
                             {% else %}
                             <a href="{% url link.href %}"> {{link.name}}</a>
                             {% endif %}
