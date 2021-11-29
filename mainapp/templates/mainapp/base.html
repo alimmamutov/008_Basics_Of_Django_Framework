@@ -131,21 +131,16 @@
                                 </button>
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="/">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/shop/">Shop</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/product-details/">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/cart/">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/checkout/">Checkout</a>
-                                        </li>
+                                        {% for link in links_menu %}
+                                        <li class="nav-item {% if request.resolver_match.view_name == link.href %}
+                                        active
+                                        {% endif %}">
+                                            {% if link.href == 'main:shop' %}
+                                            <a class="nav-link" href="{% url link.href 1 %}"> {{link.name}}</a>
+                                            {% else %}
+                                            <a class="nav-link" href="{% url link.href %}"> {{link.name}}</a>
+                                            {% endif %}
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </nav>
