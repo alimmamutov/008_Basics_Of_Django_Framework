@@ -23,7 +23,7 @@
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({% static 'img/product-img/pro-big-1.jpg' %});">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(/media/{{ product_item.0.image }});">
                                     </li>
                                     <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({% static 'img/product-img/pro-big-2.jpg' %});">
                                     </li>
@@ -34,8 +34,8 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="{% static 'img/product-img/pro-big-1.jpg' %}">
-                                            <img class="d-block w-100" src="{% static 'img/product-img/pro-big-1.jpg' %}" alt="First slide">
+                                        <a class="gallery_img" href="/media/{{ product_item.0.image }}">
+                                            <img class="d-block w-100" src="/media/{{ product_item.0.image }}" alt="First slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
@@ -62,9 +62,9 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">$180 (Only {% now "d.m.Y" %})</p>
+                                <p class="product-price">${{ product_item.0.price }} (Only {% now "d.m.Y" %})</p>
                                 <a href="/product-details/">
-                                    <h6>White Modern Chair</h6>
+                                    <h6>{{ product_item.0.name }}</h6>
                                 </a>
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">

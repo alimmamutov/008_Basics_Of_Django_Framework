@@ -131,13 +131,16 @@
 
             {% for item in product_list %}
             <!-- Single Product Area -->
-            <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+            <div class="col-12 col-sm-6 col-md-2 col-xl-4">
                 <div class="single-product-wrapper">
+
                     <!-- Product Image -->
                     <div class="product-img">
+                        <a href="{% url 'main:product_details' item.pk %}">
                         <img src="/media/{{ item.image }}" alt="">
                         <!-- Hover Thumb -->
-                        <img class="hover-img" src="/media/{{ item.image }}" alt="">
+                        <img class="hover-img" src="/static/img/product-img/product2.jpg" alt="">
+                        </a>
                     </div>
 
                     <!-- Product Description -->
@@ -165,6 +168,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             {% endfor %}
