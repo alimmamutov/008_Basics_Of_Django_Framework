@@ -45,22 +45,20 @@ def cart(request):
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
 
 
-def shop(request, pk=None):
-    print(pk)
+def shop(request, category_id=None):
     content = {
         'title': 'Amado - Furniture Ecommerce | Shop',
         'links_menu': links_menu,
-        'pk': pk,
-        'category_list': Product.objects.all()  # // Получил список всех категорий
+        'category_id': category_id,
+        'category_list': ProductCategory.objects.all()  # // Получил список всех категорий
     }
     return render(request, 'mainapp/shop.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
 
 
-def checkout(request, pk=None):
+def checkout(request):
     content = {
         'title': 'Amado - Furniture Ecommerce | Checkout',
-        'pk': pk,
         'links_menu': links_menu
     }
     return render(request, 'mainapp/checkout.html',

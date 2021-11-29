@@ -10,6 +10,6 @@ urlpatterns = [
     path('cart/', mainapp.cart, name='cart'),
     path('checkout/', mainapp.checkout, name='checkout'),
     path('product-details/<int:product_id>', mainapp.product_details, name='product_details'),
-    path('shop/', mainapp.shop, name='shop'),
+    path('shop/<int:category_id>', mainapp.shop, name='shop'),
     path('test_page/', mainapp.test_page, name='test_page'),
 ]

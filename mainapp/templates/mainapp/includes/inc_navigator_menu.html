@@ -2,10 +2,14 @@
             <nav class="amado-nav">
                 <ul>
                     {% for link in links_menu %}
-                        <li class="{% if request.resolver_match.url_name == link.href %}
+                        <li class="{% if request.resolver_match.view_name == link.href %}
                             active
                             {% endif %}">
+                            {% if link.href == 'main:shop' %}
+                            <a href="{% url link.href 1 %}"> {{link.name}}</a>
+                            {% else %}
                             <a href="{% url link.href %}"> {{link.name}}</a>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>

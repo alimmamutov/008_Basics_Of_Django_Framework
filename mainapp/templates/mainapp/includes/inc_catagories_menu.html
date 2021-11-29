@@ -1,10 +1,10 @@
 <ul>
     {% for item in category_list %}
     <li class='
-        {% if item.id == 1 %}
+        {% if request.resolver_match.kwargs.category_id == item.pk %}
             active
-        {% endif %}'> <!--  не смог дать ума присваиванию текущей категории класса актив. Поставил по дефолту для ид 1-->
-    <a href="#">{{ item.name }}</a></li>
+        {% endif %}'>
+    <a href="{% url 'main:shop' item.pk %}">{{ item.name }}</a></li>
     {% endfor %}
 
 

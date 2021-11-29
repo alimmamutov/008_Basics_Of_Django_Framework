@@ -124,10 +124,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'  # Здесь по умолчанию указывается ЮРЛ для СТАТИКИ
 
-# STATICFILES_DIRS = (  # Здесь указывается физическая папка
-#     'static',
-# )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (  # Здесь указывается физическая папка
+    'static',
+)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Определил Адрес для media. далее сетевой адрес назначил в urls
