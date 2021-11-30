@@ -1,3 +1,4 @@
+from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render
 from .models import Product, ProductCategory  # импортирую модели для формирования списка товаров
 import random
@@ -17,7 +18,7 @@ def index(request):
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
         'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
-        'page': request.GET["page"]
+        'page': request.GET.get("page", '1')
     }
     return render(request, 'mainapp/index.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
