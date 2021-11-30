@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'mainapp',
-    'mainapp.apps.MainappConfig',
+    'mainapp',
+    'authapp',
+    #'mainapp.apps.MainappConfig',
     'import_export', #  Приложение для загрузки/выгрузки данных в бд через админку
 ]  # Установленные приложения
 

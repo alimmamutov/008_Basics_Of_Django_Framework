@@ -20,6 +20,7 @@ from django.conf.urls.static import static  # импортируем для на
 
 urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),  # Здесь добавляю urls из mainapp
+    path('auth/', include('authapp.urls', namespace='auth')),  # Здесь добавляю urls из authapp
     path('admin/', admin.site.urls, name='admin'),
 ]
 
