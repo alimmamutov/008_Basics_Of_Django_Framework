@@ -1,18 +1,36 @@
-
-            <nav class="amado-nav">
-                <ul>
-                    {% for link in links_menu %}
-                        <li class="{% if request.resolver_match.view_name == link.href %}
+<nav class="amado-nav">
+    <ul>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{#% url 'auth:user_update' %#}">
+                {{ user.first_name|default:'User'|title }}
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            {% if user.is_authenticated %}
+            <a href="{% url 'auth:logout' %}">
+                Log out
+            </a>
+            {% else %}
+            <a href="{% url 'auth:login' %}">
+                Log in
+            </a>
+            {% endif %}
+        </li>
+        {% for link in links_menu %}
+        <li class="{% if request.resolver_match.view_name == link.href %}
                             active
                             {% endif %}">
-                            {% if link.href == 'main:shop' %}
-                            <a href="{% url link.href 1 %}"> {{link.name}}</a>
-                            {% elif link.href == 'main:index' %}
-                            <a href="{% url link.href %}?page=1"> {{link.name}}</a>
-                            {% else %}
-                            <a href="{% url link.href %}"> {{link.name}}</a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
+            {% if link.href == 'main:shop' %}
+            <a href="{% url link.href 1 %}"> {{link.name}}</a>
+            {% elif link.href == 'main:index' %}
+            <a href="{% url link.href %}?page=1"> {{link.name}}</a>
+            {% else %}
+            <a href="{% url link.href %}"> {{link.name}}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+
+    </ul>
+</nav>

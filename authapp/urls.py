@@ -6,5 +6,6 @@ import authapp.views as authapp  # Здесь импортируем наш ко
 app_name = 'authapp' # Указываю, что этот файл работает в пространстве имен authapp
 
 urlpatterns = [
-    # path('', auth.index, name='index'),  # Назначаем домашней странице обработчик index из views
+    path('login/', authapp.login, name='login'),
+    path('logout/', authapp.logout, name='logout'),
 ]
