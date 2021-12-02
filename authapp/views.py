@@ -6,7 +6,7 @@ from authapp.models import ShopUser
 # Create your views here.
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm, ShopUserCreateForm
+from authapp.forms import ShopUserLoginForm, ShopUserCreateForm, ShopUserUpdateForm
 
 
 def login(request):
@@ -34,7 +34,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('main:index'))
 
 
-def createNewUser(request):
+def create_new_user(request):
     ShopUser.objects.create_user(username=request.POST['username'],
                                  email=request.POST['email'],
                                  password=request.POST['password1'],
@@ -51,7 +51,7 @@ def registration(request):
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password1']
-            createNewUser(request)
+            create_new_user(request)
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
@@ -64,3 +64,19 @@ def registration(request):
         'form': form
     }
     return render(request, 'authapp/registration.html', context)
+
+
+def update(request):
+    if request.method == 'POST':
+        form = ShopUserUpdateForm(request.POST, request.FILES,
+                                  instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('auth:update'))
+    else:
+        form = ShopUserUpdateForm(instance=request.user)
+    context = {
+        'title': 'профиль пользователя',
+        'form': form,
+    }
+    return render(request, 'authapp/update.html', context)
