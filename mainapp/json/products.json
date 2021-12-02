@@ -1,0 +1,19 @@
+[
+  {"category": "Chairs and Armchairs", "name": "Modern Chair", "image": "products_images/1_Uxz3Xmn.jpg", "short_desc": "", "description": "", "price": "100.00", "quantity": 150},
+  {"category": "Chairs and Armchairs", "name": "Modern Chair", "image": "products_images/3_PgMjdOT.jpg", "short_desc": "", "description": "", "price": "500.00", "quantity": 300},
+  {"category": "Chairs and Armchairs", "name": "Modern Rocking Chair", "image": "products_images/8.jpg", "short_desc": "", "description": "", "price": "160.00", "quantity": 900},
+  {"category": "Chairs and Armchairs", "name": "Metallic Chair", "image": "products_images/7_UDkn8yz.jpg", "short_desc": "", "description": "", "price": "30.00", "quantity": 190},
+  {"category": "Plants", "name": "Minimalistic Plant Pot", "image": "products_images/2_NoMXnkv.jpg", "short_desc": "", "description": "", "price": "12.00", "quantity": 150},
+  {"category": "Plants", "name": "Plant Pot", "image": "products_images/5.jpg", "short_desc": "", "description": "", "price": "45.00", "quantity": 690},
+  {"category": "Tables", "name": "Small Table", "image": "products_images/6_S7BhDKy.jpg", "short_desc": "", "description": "", "price": "250.00", "quantity": 600},
+  {"category": "Lighting", "name": "Loft Lightning", "image": "products_images/product6_vhyM22b.jpg", "short_desc": "", "description": "", "price": "360.00", "quantity": 60},
+  {"category": "Lighting", "name": "Geometric Lidght", "image": "products_images/product7.png", "short_desc": "", "description": "", "price": "400.00", "quantity": 100},
+  {"category": "Lighting", "name": "Minimalistic Light", "image": "products_images/product8.png", "short_desc": "", "description": "", "price": "420.00", "quantity": 36},
+  {"category": "Lighting", "name": "Gothic", "image": "products_images/product9.png", "short_desc": "", "description": "", "price": "550.00", "quantity": 150},
+  {"category": "Dressers", "name": "Night Stand", "image": "products_images/4_BCsP8SG.jpg", "short_desc": "", "description": "", "price": "65.00", "quantity": 450},
+  {"category": "Dressers", "name": "Little Stand", "image": "products_images/product10.png", "short_desc": "", "description": "", "price": "150.00", "quantity": 100},
+  {"category": "Dressers", "name": "Light Dresser", "image": "products_images/product12.png", "short_desc": "", "description": "", "price": "320.00", "quantity": 150},
+  {"category": "Dressers", "name": "New Dresser", "image": "products_images/product11.png", "short_desc": "", "description": "", "price": "180.00", "quantity": 400},
+  {"category": "Home Deco", "name": "Flowers", "image": "products_images/product13.png", "short_desc": "", "description": "", "price": "250.00", "quantity": 50},
+  {"category": "Home Deco", "name": "Home Deco", "image": "products_images/9_YDQa0SF.jpg", "short_desc": "", "description": "", "price": "150.00", "quantity": 600}
+]

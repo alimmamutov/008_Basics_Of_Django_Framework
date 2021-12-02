@@ -136,3 +136,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Определил Адрес для media. далее сетевой адрес назначил в urls
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
+JSON_PATH = 'mainapp/json'
