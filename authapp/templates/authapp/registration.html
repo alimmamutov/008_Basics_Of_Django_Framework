@@ -6,11 +6,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <input class="form-control" type="submit" value="войти">
+        <input class="form-control" type="submit" value="Зарегистрироваться">
     </form>
-    <a href="{% url 'auth:reg' %}"
-       class="btn btn-round form-control">
-        зарегистрироваться
-    </a>
 
 {% endblock %}

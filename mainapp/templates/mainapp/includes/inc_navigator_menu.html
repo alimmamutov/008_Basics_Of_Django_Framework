@@ -3,7 +3,7 @@
     {% if user.is_authenticated %}
     <li>
         <a href="{#% url 'auth:user_update' %#}">
-            {{ user.first_name|default:'User'|title }}
+            {{ user.username|default:'User' }}
         </a>
     </li>
     {% endif %}

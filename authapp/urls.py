@@ -8,4 +8,5 @@ app_name = 'authapp' # Указываю, что этот файл работае
 urlpatterns = [
     path('login/', authapp.login, name='login'),
     path('logout/', authapp.logout, name='logout'),
+    path('registration/', authapp.registration, name='reg'),
 ]
