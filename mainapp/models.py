@@ -1,10 +1,20 @@
 from django.db import models
-
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 # Create your models here.
+
+onlyLatin = RegexValidator(
+            regex=r'^[A-Za-z0-9 ]+$',
+            message='В названии могут присутствовать только латинские буквы, цифры и пробелы',
+            code='invalid',
+            inverse_match=False
+        )
 
 
 class ProductCategory(models.Model):
-    name = models.CharField(verbose_name='имя', max_length=64, unique=True)
+    name = models.CharField(verbose_name='имя', max_length=64, unique=True, validators=[  # Добавил валидатор на латиницу
+        onlyLatin
+    ])
     description = models.TextField(verbose_name='описание', blank=True)
 
     def __str__(self):
@@ -13,7 +23,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    name = models.CharField(verbose_name='имя продукта', max_length=128)
+    name = models.CharField(verbose_name='имя продукта', max_length=128, validators=[onlyLatin])
     image = models.ImageField(upload_to='products_images', blank=True)
     short_desc = models.CharField(max_length=60, verbose_name='краткое описание продукта', blank=True)
     description = models.TextField(verbose_name='Описание продукта', blank=True)
