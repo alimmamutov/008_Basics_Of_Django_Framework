@@ -1,5 +1,7 @@
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render
+
+from .forms import *
 from .models import Product, ProductCategory  # импортирую модели для формирования списка товаров
 import random
 
@@ -8,7 +10,7 @@ links_menu = [{'href': 'main:index', 'name': 'Home'},
               {'href': 'main:shop', 'name': 'Shop'},
               {'href': 'main:cart', 'name': 'Cart'},
               {'href': 'main:checkout', 'name': 'Checkout'},
-              {'href': 'main:test_page', 'name': 'Test page'}
+              {'href': 'main:test_page', 'name': "Offer client's product"}
               ]
 
 
@@ -66,20 +68,10 @@ def product_details(request, product_id=None):
 
 
 def test_page(request):
-    products_list = [
-        {'price': '150', 'img': '/static/img/bg-img/1.jpg', 'name': 'Modern Chair'},
-        {'price': '250', 'img': '/static/img/bg-img/2.jpg', 'name': 'Minimalistic Plant Pot'},
-        {'price': '300', 'img': '/static/img/bg-img/3.jpg', 'name': 'Modern Chair'},
-        {'price': '350', 'img': '/static/img/bg-img/4.jpg', 'name': 'Night Stand'},
-        {'price': '400', 'img': '/static/img/bg-img/5.jpg', 'name': 'Plant Pot'},
-        {'price': '450', 'img': '/static/img/bg-img/6.jpg', 'name': 'Small Table'},
-        {'price': '500', 'img': '/static/img/bg-img/7.jpg', 'name': 'Metallic Chair'},
-        {'price': '550', 'img': '/static/img/bg-img/8.jpg', 'name': 'Modern Rocking Chair'},
-        {'price': '600', 'img': '/static/img/bg-img/9.jpg', 'name': 'Home Deco'}
-    ]
+    form = ClientProductOffer()
     content_test = {
-        'title': 'тестовая страница',
+        'title': 'Предложить товар',
         'links_menu': links_menu,
-        'products_list': products_list
+        'form': form
     }
     return render(request, 'mainapp/test_page.html', context=content_test)

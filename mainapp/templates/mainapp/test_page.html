@@ -1,4 +1,12 @@
-{% extends 'mainapp/base.html' %}
-{% block content %}
-{% include 'mainapp/includes/inc_products_categories_area_content.html' %}
-{% endblock %}
+
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <form class="newsletter-form" action="{% url 'main:test_page' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Предложить</button>
+            </form>
+        </div>
+    </div>
+</div>
