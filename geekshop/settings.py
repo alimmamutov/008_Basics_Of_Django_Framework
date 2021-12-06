@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
     'authapp',
+    'basketapp',
     #'mainapp.apps.MainappConfig',
     'import_export', #  Приложение для загрузки/выгрузки данных в бд через админку
 ]  # Установленные приложения

@@ -10,7 +10,8 @@ links_menu = [{'href': 'main:index', 'name': 'Home'},
               {'href': 'main:shop', 'name': 'Shop'},
               {'href': 'main:cart', 'name': 'Cart'},
               {'href': 'main:checkout', 'name': 'Checkout'},
-              {'href': 'main:test_page', 'name': "Offer client's product"}
+              {'href': 'main:test_page', 'name': "Offer client's product"},
+              {'href': 'basket:basket', 'name': "Basket"}
               ]
 
 
@@ -40,7 +41,8 @@ def shop(request, category_id=None):
         'title': 'Amado - Furniture Ecommerce | Shop',
         'links_menu': links_menu,
         'category_id': category_id,
-        'product_list': Product.objects.filter(category_id=category_id),
+        'product_list': Product.objects.filter(category_id=category_id).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
+        # 'product_list': Product.objects.filter(category_id=category_id).order_by('price'),  # сортировка по возр
         'category_list': ProductCategory.objects.all()  # // Получил список всех категорий
     }
     return render(request, 'mainapp/shop.html',
