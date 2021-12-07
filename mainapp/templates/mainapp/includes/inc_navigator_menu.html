@@ -31,7 +31,10 @@
             {% elif link.href == 'main:index' %}
             <a href="{% url link.href %}?page=1"> {{link.name}}</a>
             {% elif link.href == 'basket:view' %}
-            <a href="{% url link.href %}"> {{link.name}} {% if basket %} ({{basket|length}}){% endif %}</a>
+            <a href="{% url link.href %}"> {{link.name}}
+                {% if basket %}
+                    ( {{basket.0.total.total_quantity}}: {{basket.0.total.total_cost}} $ )
+                {% endif %}</a>
             {% else %}
             <a href="{% url link.href %}"> {{link.name}}</a>
             {% endif %}

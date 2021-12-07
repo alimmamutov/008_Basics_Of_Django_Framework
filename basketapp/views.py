@@ -1,13 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from basketapp.models import Basket
 from mainapp.models import Product
-from mainapp.views import links_menu, initial_my_basket
+from mainapp.views import links_menu
 
 
 def basket(request):
     content = {
         'links_menu': links_menu,
-        'basket': initial_my_basket(request)
+        'basket': Basket.objects.filter(user=request.user)
     }
     return render(request, 'basketapp/view.html', content)
 
