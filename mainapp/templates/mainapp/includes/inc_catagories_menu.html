@@ -1,7 +1,7 @@
 <ul>
     {% for item in category_list %}
     <li class='
-        {% if request.resolver_match.kwargs.category_id == item.pk %}
+        {% if request.resolver_match.kwargs.category_id|add:0 == item.pk %} <!-- шаблонный фильтр add преобразует строку в число -->
             active
         {% endif %}'>
     <a href="{% url 'main:shop' item.pk %}">{{ item.name }}</a></li>

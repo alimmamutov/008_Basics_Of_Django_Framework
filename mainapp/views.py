@@ -1,5 +1,5 @@
 from django.utils.datastructures import MultiValueDictKeyError
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
 from .forms import *
@@ -41,17 +41,22 @@ def index(request):
 #                   context=content)  # Второй параметр - это путь html страницы, относительно templates
 
 
-def shop(request, category_id=None):
+def shop(request, category_id=None, product_id=None):
 
     content = {
         'title': 'Amado - Furniture Ecommerce | Shop',
         'links_menu': links_menu,
-        'category_id': category_id,
+        'category_id': int(category_id),
         'product_list': Product.objects.filter(category_id=category_id).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
         # 'product_list': Product.objects.filter(category_id=category_id).order_by('price'),  # сортировка по возр
         'category_list': ProductCategory.objects.all(),  # // Получил список всех категорий
         'basket': Basket.objects.filter(user=request.user)
     }
+    """
+       Вариант отбора списка продуктов по категории №2:
+           cat = get_object_or_404(ProductCategory, pk=category_id)
+           product_list = cat.product_set.all();
+    """
     return render(request, 'mainapp/shop.html',
                   context=content)  # Второй параметр - это путь html страницы, относительно templates
 

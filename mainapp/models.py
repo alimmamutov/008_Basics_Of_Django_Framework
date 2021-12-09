@@ -17,7 +17,7 @@ class ProductCategory(models.Model):
     description = models.TextField(verbose_name='описание', blank=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
 
 class Product(models.Model):
@@ -29,7 +29,5 @@ class Product(models.Model):
     price = models.DecimalField(verbose_name='цена продукта', max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=0)
 
-    def __str__(self):
-        return f'{self.name} ({self.category.name})'
-
-
+    def __str__(self):  # Представление объекта
+        return f'{self.name} - {self.price}$ ({self.category.name})'
