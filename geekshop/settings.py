@@ -138,3 +138,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Определил Адрес д
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 JSON_PATH = 'mainapp/json'
+
+LOGIN_URL = '/auth/login/'
