@@ -58,7 +58,7 @@ def basket_edit(request, pk, quantity):
             order_by('product__category')
 
         content = {
-            'basket_items': basket_items,
+            'basket': basket_items,
         }
 
         result = render_to_string('basketapp/includes/inc_basket_list.html', \
