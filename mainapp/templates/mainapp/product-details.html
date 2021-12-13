@@ -87,18 +87,8 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
                             </div>
 
-                            <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
-                                <div class="cart-btn d-flex mb-50">
-                                    <p>Qty</p>
-                                    <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
-                            </form>
+                            <a href="{% url 'basket:add' product_item.0.pk %}" class="btn amado-btn mb-15"><img
+                                        src="/static/img/core-img/cart.png" alt=""> Add to cart </a>
 
                         </div>
                     </div>

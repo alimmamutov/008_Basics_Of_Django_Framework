@@ -4,6 +4,11 @@
 {% block container %}
     <form class="form-horizontal" method="post">
         {% csrf_token %}
+            <!--чтобы после ввода логина и пароля снова получить в контроллере значение переменной next,
+            выведем его в шаблоне аналогично CSRF в виде скрытого поля формы <input>:-->
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
         {{ form.as_p }}
         <br>
         <input class="form-control" type="submit" value="войти">

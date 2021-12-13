@@ -10,6 +10,12 @@ from authapp.forms import ShopUserLoginForm, ShopUserCreateForm, ShopUserUpdateF
 
 
 def login(request):
+
+    # При переходе на страницу логина, когда срабатывает декоратор @login_required, в GET-переменной next передается
+    # исходный адрес. Если хотели добавить в корзину товар с pk=3, в адресной строке браузера увидим:
+    # http://127.0.0.1:8000/auth/login/?next=/basket/add/3/
+
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
     if request.method == 'POST':
         form = ShopUserLoginForm(data=request.POST)
         if form.is_valid():
@@ -19,12 +25,16 @@ def login(request):
             if user and user.is_active:
                 auth.login(request, user)
                 # return HttpResponseRedirect('/')
-                return HttpResponseRedirect(reverse('main:index'))
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
+                else:
+                    return HttpResponseRedirect(reverse('main'))
     else:
         form = ShopUserLoginForm()
     context = {
         'title': 'Вход в систему',
-        'form': form
+        'form': form,
+        'next': next
     }
     return render(request, 'authapp/login.html', context)
 
