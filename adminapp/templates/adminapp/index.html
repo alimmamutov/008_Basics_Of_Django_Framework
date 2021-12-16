@@ -14,6 +14,9 @@
                     <a href="{% url 'my_admin:user_update' shop_user.pk %}" class="btn btn-primary">
                         редактировать
                     </a>
+                    <a href="{% url 'my_admin:user_delete_direct' shop_user.pk %}" class="btn  btn-primary">
+                       УДАЛИТЬ
+                    </a>
                     <a href="{% url 'my_admin:user_delete' shop_user.pk %}" class="btn btn-danger">
                         удалить
                     </a>
@@ -27,20 +30,26 @@
                                 <p>{{ shop_user.last_name|title }}</p>
                             {% endif %}
                         {% endif %}
+                        <p>{{ shop_user.last_name|title }}</p>
                     </p>
                 </div>
                 <div class="user_age">
                     age:<br>
+                    {{ shop_user.age }} лет <br>
                     {{ shop_user.age }} лет
                 </div>
                 <div class="user_email">
                     email:<br>
-                    {{ shop_user.email }}
+                    {{ shop_user.email }}<br>
+                     {{ shop_user.email }}<br>
+                     {{ shop_user.email }}<br>
+                     {{ shop_user.email }}
                 </div>
                 <div class="user_lastlogin">
                     logged:<br>
+                    {{ shop_user.last_login }}<br>
                     {{ shop_user.last_login }}
-                </div>
+                </div><br>
             </div>
         {% endfor %}
     </div>

@@ -75,3 +75,19 @@ def user_delete(request, pk):
         'user_to_delete': user,
     }
     return render(request, 'adminapp/user_delete.html', context)
+
+
+@user_passes_test(lambda x: x.is_superuser)
+def user_delete_direct(request, pk):
+    user = get_object_or_404(ShopUser, pk=pk)
+    # user.delete()  # not good
+
+    if request.method == 'POST':
+        user.delete()
+        return HttpResponseRedirect(reverse('my_admin:index'))
+
+    context = {
+        'title': 'пользователи/удаление',
+        'user_to_delete': user,
+    }
+    return render(request, 'adminapp/user_delete.html', context)
