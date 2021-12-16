@@ -28,7 +28,7 @@ def login(request):
                 if 'next' in request.POST.keys():
                     return HttpResponseRedirect(request.POST['next'])
                 else:
-                    return HttpResponseRedirect(reverse('main'))
+                    return HttpResponseRedirect(reverse('main:index'))
     else:
         form = ShopUserLoginForm()
     context = {
