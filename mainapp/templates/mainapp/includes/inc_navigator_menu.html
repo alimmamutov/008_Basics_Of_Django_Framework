@@ -9,6 +9,13 @@
     {% endif %}
     <li>
         {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <li>
+                <a href="{% url 'my_admin:index' %}">
+                    Administration
+                </a>
+            </li>
+            {% endif %}
         <a href="{% url 'auth:logout' %}">
             Log out
         </a>
@@ -17,6 +24,7 @@
             Log in
         </a>
         {% endif %}
+
     </li>
 </ul>
 
