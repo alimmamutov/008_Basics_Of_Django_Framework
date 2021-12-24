@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
-from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm
+from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm, AdminProductCategoryUpdateForm
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory
 
@@ -102,3 +102,38 @@ def categories(request):
         'object_list': categories,
     }
     return render(request, 'adminapp/categories_list.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def category_create(request):
+    if request.method == 'POST':
+        form = AdminProductCategoryUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('my_admin:categories'))
+    else:
+        form = AdminProductCategoryUpdateForm()
+
+    context = {
+        'title': 'категории продуктов/создание',
+        'form': form
+    }
+    return render(request, 'adminapp/category_update.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def category_update(request, pk):
+    obj = get_object_or_404(ProductCategory, pk=pk)
+    if request.method == 'POST':
+        form = AdminProductCategoryUpdateForm(request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('my_admin:categories'))
+    else:
+        form = AdminProductCategoryUpdateForm(instance=obj)
+
+    context = {
+        'title': 'категории продуктов/редактирование',
+        'form': form
+    }
+    return render(request, 'adminapp/category_update.html', context)
