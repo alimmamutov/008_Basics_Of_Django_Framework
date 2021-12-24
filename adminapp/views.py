@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm
 from authapp.models import ShopUser
+from mainapp.models import ProductCategory
 
 
 @user_passes_test(lambda x: x.is_superuser)  # Этот декоратор пропустит в админку только юзера, удовл условиям в скобках
@@ -91,3 +92,13 @@ def user_delete_direct(request, pk):
         'user_to_delete': user,
     }
     return render(request, 'adminapp/user_delete.html', context)
+
+
+@user_passes_test(lambda x: x.is_superuser)
+def categories(request):
+    categories = ProductCategory.objects.all()
+    context = {
+        'title': 'administration/categories',
+        'object_list': categories,
+    }
+    return render(request, 'adminapp/categories_list.html', context)
