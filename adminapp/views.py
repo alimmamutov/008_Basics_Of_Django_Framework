@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm, AdminProductCategoryUpdateForm
 from authapp.models import ShopUser
-from mainapp.models import ProductCategory
+from mainapp.models import ProductCategory, Product
 
 
 @user_passes_test(lambda x: x.is_superuser)  # Этот декоратор пропустит в админку только юзера, удовл условиям в скобках
@@ -154,3 +154,15 @@ def category_delete(request, pk):
         'object': obj,
     }
     return render(request, 'adminapp/category_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def category_products(request, pk):
+    category = get_object_or_404(ProductCategory, pk=pk)
+    object_list = category.product_set.all()
+    context = {
+        'title': f'категория {category.name}/продукты',
+        'category': category,
+        'object_list': object_list
+    }
+    return render(request, 'adminapp/category_products_list.html', context)
