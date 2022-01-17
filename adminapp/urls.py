@@ -14,4 +14,5 @@ urlpatterns = [
     path('category/list/', adminapp.categories, name='categories'),
     path('category/create/', adminapp.category_create, name='category_create'),
     path('category/update/<int:pk>', adminapp.category_update, name='category_update'),
+    path('category/delete/<int:pk>', adminapp.category_delete, name='category_delete'),
 ]

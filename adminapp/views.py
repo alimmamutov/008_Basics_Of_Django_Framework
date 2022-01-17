@@ -137,3 +137,20 @@ def category_update(request, pk):
         'form': form
     }
     return render(request, 'adminapp/category_update.html', context)
+
+
+@user_passes_test(lambda x: x.is_superuser)
+def category_delete(request, pk):
+    obj = get_object_or_404(ProductCategory, pk=pk)
+    # user.delete()  # not good
+
+    if request.method == 'POST':
+        obj.is_active = not obj.is_active
+        obj.save()
+        return HttpResponseRedirect(reverse('my_admin:categories'))
+
+    context = {
+        'title': 'категори/удаление',
+        'object': obj,
+    }
+    return render(request, 'adminapp/category_delete.html', context)

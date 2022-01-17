@@ -52,7 +52,7 @@ def shop(request, category_id=None, product_id=None):
         'category_id': int(category_id),
         'product_list': Product.objects.filter(category_id=category_id).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
         # 'product_list': Product.objects.filter(category_id=category_id).order_by('price'),  # сортировка по возр
-        'category_list': ProductCategory.objects.all(),  # // Получил список всех категорий
+        'category_list': ProductCategory.objects.filter(is_active = True),  # // Получил список всех категорий
         'basket': get_basket(request)
     }
     """
