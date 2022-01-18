@@ -50,7 +50,7 @@ def shop(request, category_id=None, product_id=None):
         'title': 'Amado - Furniture Ecommerce | Shop',
         'links_menu': links_menu,
         'category_id': int(category_id),
-        'product_list': Product.objects.filter(category_id=category_id).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
+        'product_list': Product.objects.filter(category_id=category_id, is_active=True).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
         # 'product_list': Product.objects.filter(category_id=category_id).order_by('price'),  # сортировка по возр
         'category_list': ProductCategory.objects.filter(is_active = True),  # // Получил список всех категорий
         'basket': get_basket(request)

@@ -5,7 +5,8 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
-from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm, AdminProductCategoryUpdateForm
+from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm, AdminProductCategoryUpdateForm, \
+    AdminProductUpdateForm
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
 
@@ -166,3 +167,87 @@ def category_products(request, pk):
         'object_list': object_list
     }
     return render(request, 'adminapp/category_products_list.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def product_create(request, category_pk):
+    category = get_object_or_404(ProductCategory, pk=category_pk)
+    if request.method == 'POST':
+        form = AdminProductUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse(
+                'my_admin:category_products',
+                kwargs={'pk': category.pk}
+            ))
+    else:
+        form = AdminProductUpdateForm(
+            initial={  # в данный аргумент добавляем словарь с инициализацией реквизитов модели
+                'category': category,
+                # 'quantity': 10,
+                # 'price': 157.9,
+            }
+        )
+
+    context = {
+        'title': 'продукты/создание',
+        'form': form,
+        'category': category,
+    }
+    return render(request, 'adminapp/product_update.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def product_update(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = AdminProductUpdateForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse(
+                'my_admin:category_products',
+                kwargs={'pk': product.category.pk}
+            ))
+    else:
+        form = AdminProductUpdateForm(instance=product)
+
+    context = {
+        'title': 'продукты/редактирование',
+        'form': form,
+        'category': product.category,
+    }
+    return render(request, 'adminapp/product_update.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def product_delete(request, pk):
+    obj = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        obj.is_active = False
+        obj.save()
+        return HttpResponseRedirect(reverse(
+            'my_admin:category_products',
+            kwargs={'pk': obj.category.pk}
+        ))
+
+    context = {
+        'title': 'продукты/удаление',
+        'object': obj,
+    }
+    return render(request, 'adminapp/product_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def product_read(request, pk):
+    obj = get_object_or_404(Product, pk=pk)
+    context = {
+        'title': 'продукты/подробнее',
+        'object': obj,
+    }
+    return render(request, 'adminapp/product_read.html', context)
+#
+#
+# class ProductDetail(DetailView):
+#     model = Product
+#     pk_url_kwarg = 'product_pk'
