@@ -37,7 +37,7 @@
             {% if link.href == 'main:shop' %}
             <a href="{% url link.href 1 %}"> {{link.name}}</a>
             {% elif link.href == 'main:index' %}
-            <a href="{% url link.href %}?page=1"> {{link.name}}</a>
+            <a href="{% url link.href %}"> {{link.name}}</a>
             {% elif link.href == 'basket:view' %}
             <a href="{% url link.href %}"> {{link.name}}
                 {% if basket %}

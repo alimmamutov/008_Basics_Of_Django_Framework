@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, get_object_or_404
 
@@ -21,13 +22,23 @@ def get_basket(request):
     return request.user.is_authenticated and request.user.basket.all() or []
 
 
-def index(request):
+def index(request,page=1):
+    products = Product.objects.filter(is_active=True)
+    paginator = Paginator(products, 2)
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)  # num_pages - это количество страниц
 
     content = {
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
-        'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
-        'page': request.GET.get("page", '1'),
+        # 'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
+        'product_list': products,
+        # 'page': request.GET.get("page", '1'),
         'basket': get_basket(request)
     }
     return render(request, 'mainapp/index.html',
