@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 
 from adminapp.forms import AdminShopUserCreateForm, AdminShopUserUpdateForm, AdminProductCategoryUpdateForm, \
     AdminProductUpdateForm
@@ -11,17 +13,25 @@ from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
 
 
-@user_passes_test(lambda x: x.is_superuser)  # Этот декоратор пропустит в админку только юзера, удовл условиям в скобках
-def index(request):
+# @user_passes_test(lambda x: x.is_superuser)  # Этот декоратор пропустит в админку только юзера, удовл условиям в скобках
+# def index(request):
+#
+#     users_list = ShopUser.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+#
+#     context = {
+#         'title': 'админка/пользователи',
+#         'object_list': users_list
+#     }
+#
+#     return render(request, 'adminapp/index.html', context)
 
-    users_list = ShopUser.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
 
-    context = {
-        'title': 'админка/пользователи',
-        'object_list': users_list
-    }
+class ShopUserList(ListView):  # это заменяет контроллер индексной страницы админки
+    model = ShopUser
 
-    return render(request, 'adminapp/index.html', context)
+    @method_decorator(user_passes_test(lambda x: x.is_superuser))
+    def dispatch(self, request, *args, **kwargs):  # Данная функция не разрешает открывать шаблон незалогиненным пользователям
+        return super().dispatch(request, *args, **kwargs)
 
 
 @user_passes_test(lambda x: x.is_superuser)
