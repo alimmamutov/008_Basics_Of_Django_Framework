@@ -7,6 +7,7 @@ app_name = 'mainapp' # Указываю, что этот файл работае
 
 urlpatterns = [
     path('', mainapp.index, name='index'),  # Назначаем домашней странице обработчик index из views
+    path('<int:page>', mainapp.index, name='index_pagination'),  # Если выбрана определенная страница из домашней
     # path('cart/', mainapp.cart, name='cart'),
     path('checkout/', mainapp.checkout, name='checkout'),
     path('product-details/<int:product_id>', mainapp.product_details, name='product_details'),

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, get_object_or_404
 
@@ -21,13 +22,23 @@ def get_basket(request):
     return request.user.is_authenticated and request.user.basket.all() or []
 
 
-def index(request):
+def index(request,page=1):
+    products = Product.objects.filter(is_active=True)
+    paginator = Paginator(products, 2)
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)  # num_pages - это количество страниц
 
     content = {
         'title': 'Amado - Furniture Ecommerce | Home',
         'links_menu': links_menu,
-        'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
-        'page': request.GET.get("page", '1'),
+        # 'product_list': sorted(Product.objects.all()[:], key=lambda x: random.random()),
+        'product_list': products,
+        # 'page': request.GET.get("page", '1'),
         'basket': get_basket(request)
     }
     return render(request, 'mainapp/index.html',
@@ -50,9 +61,9 @@ def shop(request, category_id=None, product_id=None):
         'title': 'Amado - Furniture Ecommerce | Shop',
         'links_menu': links_menu,
         'category_id': int(category_id),
-        'product_list': Product.objects.filter(category_id=category_id).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
+        'product_list': Product.objects.filter(category_id=category_id, is_active=True).order_by('-price'),  # сортировка по убыв (перед назв колонки поставить "-")
         # 'product_list': Product.objects.filter(category_id=category_id).order_by('price'),  # сортировка по возр
-        'category_list': ProductCategory.objects.all(),  # // Получил список всех категорий
+        'category_list': ProductCategory.objects.filter(is_active = True),  # // Получил список всех категорий
         'basket': get_basket(request)
     }
     """
