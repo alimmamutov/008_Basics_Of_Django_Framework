@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-
+import django.forms as forms
 from authapp.models import ShopUser
 
 

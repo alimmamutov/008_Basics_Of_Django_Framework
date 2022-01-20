@@ -22,7 +22,8 @@ urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),  # Здесь добавляю urls из mainapp
     path('auth/', include('authapp.urls', namespace='auth')),  # Здесь добавляю urls из authapp
     path('admin/', admin.site.urls, name='admin'),
-    path('basket/', include('basketapp.urls', namespace='basket'))
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('my/admin/', include('adminapp.urls', namespace='my_admin'))
 ]
 
 # Сообщаю Django, что папка на диске MEDIA_ROOT доступна по сетевому адресу MEDIA_ROOT

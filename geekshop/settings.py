@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'basketapp',
     #'mainapp.apps.MainappConfig',
     'import_export', #  Приложение для загрузки/выгрузки данных в бд через админку
+    'adminapp',
 ]  # Установленные приложения
 
 MIDDLEWARE = [
